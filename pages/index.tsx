@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   Flex,
   Heading,
@@ -12,21 +11,24 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { CreateIntentResponse } from "@candypay/checkout-sdk";
 import axios from "axios";
-import { useState } from "react";
+import { PayElement } from "@candypay/elements";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 
+
 export default function Home() {
-  const [loadkar, setLoadkar] = useState(false);
   const router = useRouter();
 
-  const sessionHandler = async () => {
-    setLoadkar(true);
-    const { data } = await axios.post("/api/session/");
-    const url = data.redirect_url.replace("checkout", "pos");
-    setLoadkar(false);
-    router.push(url);
+  const intentHandler = async (): Promise<CreateIntentResponse> => {
+    const res = await axios.post("/api/intent/");
+    return res.data;
+  };
+
+  const theme = {
+    primaryColor: "#C57991",
+    secondaryColor: "#fff",
   };
 
   return (
@@ -78,18 +80,20 @@ export default function Home() {
               </VStack>
             </Stack>
             <Stack direction="row" spacing={4}>
-              <Button
-                cursor={"pointer"}
-                colorScheme="purple"
-                mr={3}
-                width="200px"
-                as="b"
-                borderRadius={8}
-                isLoading={loadkar}
-                onClick={sessionHandler}
-              >
-                Pay with Solana
-              </Button>
+              <PayElement
+              theme={theme}
+              value="Buy Nike Shoes"
+                intentHandler={intentHandler}
+                onSuccess={() => {
+                  console.log("success");
+                  toast.success("Payment successful");
+                  router.push('/success')
+                }}
+                onError={() => {
+                  console.log("error");
+                  toast.error("Payment failed");
+                }}
+              />
             </Stack>
           </Stack>
         </SimpleGrid>

@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@candypay/checkout-sdk": "0.1.49-alpha.1",
+    "@candypay/checkout-sdk": "0.1.49-alpha.3",
+    "@candypay/elements": "^0.0.13",
     "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
