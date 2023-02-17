@@ -1,38 +1,176 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### CandyPay payment component
 
-## Getting Started
+Integrate payment component natively in your platform and start accepting SOL and SPL token payments, seamlessly! 
 
-First, run the development server:
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install @candypay/elements @candypay/checkout-sdk
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. First, wrap your app in the `CheckoutProvider` component and import the `wallet-adapter-react-ui` styles as shown below:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```tsx
+import { CheckoutProvider } from "@candypay/elements";
+import { AppProps } from "next/app";
+import("@solana/wallet-adapter-react-ui/styles.css" as any);
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <CheckoutProvider
+      publicApiKey={process.env[`NEXT_PUBLIC_CP_API`] as string}
+    >
+      <Component {...pageProps} />
+    </CheckoutProvider>
+  );
+};
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+export default App;
+```
 
-## Learn More
+2. Using the `PayElement` component:
 
-To learn more about Next.js, take a look at the following resources:
+```tsx
+import { CreateIntentResponse } from "@candypay/checkout-sdk";
+import axios from "axios";
+import { PayElement } from "@candypay/elements";
+import { toast } from "react-hot-toast";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+export default function Web() {
+  const intentHandler = async (): Promise<CreateIntentResponse> => {
+    const res = await axios.post("/api/intent/create");
+    return res.data;
+  };
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  return (
+    <>
+      <PayElement
+        intentHandler={intentHandler}
+        onSuccess={() => {
+          console.log("success");
+          toast.success("Payment successful");
+        }}
+        onError={() => {
+          console.log("error");
+          toast.error("Payment failed");
+        }}
+      />
+    </>
+  );
+}
+```
 
-## Deploy on Vercel
+3. API Handler to create the intent (using the `checkout-sdk`):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- lib/init/candypay.ts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```ts
+import { CandyPay } from "@candypay/checkout-sdk";
+
+const candypay = new CandyPay({
+  api_keys: {
+    public_api_key: process.env[`NEXT_PUBLIC_CP_API`] as string,
+    private_api_key: process.env[`CANDYPAY_PRIVATE_KEY`] as string,
+  },
+  network: "mainnet",
+  config: {
+    collect_shipping_address: false,
+  },
+});
+
+export { candypay };
+```
+
+- `pages/api/intent/create.ts`
+
+```ts
+import { NextApiHandler } from "next";
+import { candypay } from "../../../lib/init/candypay";
+
+const handler: NextApiHandler = async (req, res) => {
+  if (req.method !== "POST") {
+    res.status(405).end();
+    return;
+  }
+
+  const response = await candypay.paymentIntent.create({
+    success_url: "https://candypay.fun/success",
+    cancel_url: "https://candypay.fun/cancel",
+    tokens: ["shdw", "bonk"],
+    items: [
+      {
+        name: "Nike Air Force",
+        image: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-shoes-WrLlWX.png",
+        price: 0.1,
+        quantity: 1,
+      },
+    ],
+    discounts: undefined,
+  });
+
+  return res.status(200).json(response);
+};
+
+export default handler;
+```
+
+In the above example, `candypay` is an instance of the `CandyPay` class from the `checkout-sdk` package. The `paymentIntent.create` method returns a `CreateIntentResponse` object, which is used by the `PayElement` component to render the payment form.
+
+## Props
+
+### PayElement
+
+| Prop          | Type                                  | Description                                                                                         |
+| ------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| intentHandler | `() => Promise<CreateIntentResponse>` | A function that returns a `CreateIntentResponse` object. This is used to create the payment intent. |
+| onSuccess     | `() => void`                          | A function that is called when the payment is successful.                                           |
+| onError       | `() => void`                          | A function that is called when the payment fails.                                                   |
+| theme         | `Theme`                               | Primary and secondary colors to be used for the component.                                          |
+
+### Theme
+
+Example theme object:
+
+```ts
+const theme = {
+  primaryColor: "#ff0000",
+  secondaryColor: "#0000ff",
+};
+```
+
+### onSuccess
+
+The `onSuccess` prop is called when the payment is successful. It is passed an object with the following params:
+
+```ts
+{
+  customer: string; // the public key of the customer in string format
+  signature: string; // signature of the transaction
+}
+```
+
+#### Example
+
+```ts
+<PayElement
+  intentHandler={intentHandler}
+  onSuccess={(d: SuccessResponse) => {
+    console.log(d.signature);
+    toast.success("Payment successful");
+  }}
+  onError={() => {
+    console.log("error");
+    toast.error("Payment failed");
+  }}
+/>
+```
+
+In the above example, `SuccessResponse` is a type imported from the sdk like so:
+
+```ts
+import { SuccessResponse } from "@candypay/elements";
+```
+
+If you're using js, you can ignore assigning the type to the `onSuccess` prop.
