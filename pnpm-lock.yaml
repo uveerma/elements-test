@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@candypay/checkout-sdk': 0.1.49-alpha.3
-  '@candypay/elements': ^0.0.13
+  '@candypay/checkout-sdk': 0.1.51
+  '@candypay/elements': 0.0.14
   '@chakra-ui/icons': ^2.0.17
   '@chakra-ui/react': ^2.4.9
   '@emotion/react': ^11.10.5
@@ -26,8 +26,8 @@ specifiers:
   typescript: 4.9.5
 
 dependencies:
-  '@candypay/checkout-sdk': 0.1.49-alpha.3
-  '@candypay/elements': 0.0.13_lehidlemdfx4ncb75bonrbuqg4
+  '@candypay/checkout-sdk': 0.1.51
+  '@candypay/elements': 0.0.14_lehidlemdfx4ncb75bonrbuqg4
   '@chakra-ui/icons': 2.0.17_react@18.2.0
   '@chakra-ui/react': 2.4.9_jntevb2kvjecrmtem5movaqss4
   '@emotion/react': 11.10.5_pmekkgnqduwlme35zpnqhenc34
@@ -149,8 +149,8 @@ packages:
       - encoding
     dev: false
 
-  /@candypay/checkout-sdk/0.1.49-alpha.3:
-    resolution: {integrity: sha512-gsdHX6ipUyMmLx2DXEAW53J2YNGb/AvsRWP3nE+/maZWzo5F2XYlqLpAPKjclL6i+mv8tk7yVRW0Y+t/DB6BDg==}
+  /@candypay/checkout-sdk/0.1.51:
+    resolution: {integrity: sha512-Vi0PcPR5eryhewpTep7S+o70VyYVBektFiy1A2ETN0oSDpD0SPdh4/PbfJEbDXlZDnhDCpuLLFoJzKuOVLBGbQ==}
     dependencies:
       '@types/node': 18.7.18
       axios: 0.27.2
@@ -161,8 +161,8 @@ packages:
       - encoding
     dev: false
 
-  /@candypay/elements/0.0.13_lehidlemdfx4ncb75bonrbuqg4:
-    resolution: {integrity: sha512-JY7ISb9ACtqDYf8BLNIqdhGjLlSu8BeGt3aR3jZUWZufqbfoEHUMbKT5i3FFhYaq7qQobWVt8iRO2h12h167VQ==}
+  /@candypay/elements/0.0.14_lehidlemdfx4ncb75bonrbuqg4:
+    resolution: {integrity: sha512-TwIR10/rLwvUhxoM2CnkHLmdwNo9EMW0300N8bDuhrI8hWcbhNyaca6FFw5pTcFE9NBL8NyBYPimnqQln/qqxA==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
