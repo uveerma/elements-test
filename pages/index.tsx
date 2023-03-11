@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   const theme = {
-    primaryColor: "#C57991",
+    primaryColor: "#2824FF",
     secondaryColor: "#fff",
   };
 
