@@ -23,6 +23,7 @@ export default function Home() {
 
   const intentHandler = async (): Promise<CreateIntentResponse> => {
     const res = await axios.post("/api/intent/");
+    console.log("intent data", res.data);
     return res.data;
   };
 
