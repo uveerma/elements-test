@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@candypay/checkout-sdk": "0.1.52-alpha.0",
-    "@candypay/elements": "0.0.15",
+    "@candypay/elements": "0.0.16",
     "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",

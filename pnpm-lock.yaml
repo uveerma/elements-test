@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@candypay/checkout-sdk': 0.1.52-alpha.0
-  '@candypay/elements': 0.0.15
+  '@candypay/elements': 0.0.16
   '@chakra-ui/icons': ^2.0.17
   '@chakra-ui/react': ^2.4.9
   '@emotion/react': ^11.10.5
@@ -27,7 +27,7 @@ specifiers:
 
 dependencies:
   '@candypay/checkout-sdk': 0.1.52-alpha.0
-  '@candypay/elements': 0.0.15_lehidlemdfx4ncb75bonrbuqg4
+  '@candypay/elements': 0.0.16_lehidlemdfx4ncb75bonrbuqg4
   '@chakra-ui/icons': 2.0.17_react@18.2.0
   '@chakra-ui/react': 2.4.9_jntevb2kvjecrmtem5movaqss4
   '@emotion/react': 11.10.5_pmekkgnqduwlme35zpnqhenc34
@@ -137,18 +137,6 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@candypay/checkout-sdk/0.1.51:
-    resolution: {integrity: sha512-Vi0PcPR5eryhewpTep7S+o70VyYVBektFiy1A2ETN0oSDpD0SPdh4/PbfJEbDXlZDnhDCpuLLFoJzKuOVLBGbQ==}
-    dependencies:
-      '@types/node': 18.7.18
-      axios: 0.27.2
-      pako: 2.1.0
-      svix: 0.70.0
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
   /@candypay/checkout-sdk/0.1.52-alpha.0:
     resolution: {integrity: sha512-LZHO5atuHgxMeUHcWDbZ6qLmPFWBZhHiRG4pYIm2RWuwre2g4iV2+SeTtdZYPQ+5LKF1oaDDfpQu3qUZNkwnUw==}
     dependencies:
@@ -161,12 +149,17 @@ packages:
       - encoding
     dev: false
 
-  /@candypay/elements/0.0.15_lehidlemdfx4ncb75bonrbuqg4:
-    resolution: {integrity: sha512-+CkAvnOO1ZscUwZTlsSZUCZBNA2hswumBgztRYqrJNpphzhWP1Wx+e58A2qtOWriNzZ5+Pl5RvB6/ij1lW4Z6w==}
+  /@candypay/common/0.0.10:
+    resolution: {integrity: sha512-Ytd3ZILL3fd1OCG+fURt4uyBflsE4V8GDtNuMaXtVpTJfeYpFbSHZVmQ7R26El2mo9BrlIcXgv9wdc4WaIBO1w==}
+    dev: false
+
+  /@candypay/elements/0.0.16_lehidlemdfx4ncb75bonrbuqg4:
+    resolution: {integrity: sha512-QtVYA001JXUKcNZafk96Zm8N5yN+TiD8GJBXoXBcfDcyH51YOBRW3rmuUj3A497KjR//tUs97Ix+KMqqGUAC2w==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
-      '@candypay/checkout-sdk': 0.1.51
+      '@candypay/checkout-sdk': 0.1.52-alpha.0
+      '@candypay/common': 0.0.10
       '@chakra-ui/react': 2.4.9_jntevb2kvjecrmtem5movaqss4
       '@emotion/react': 11.10.5_pmekkgnqduwlme35zpnqhenc34
       '@emotion/styled': 11.10.5_g6cddab2ma6w7rmdnelgn6dq2a
