@@ -1,8 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { candypay } from "../../lib";
-export const config = {
-  runtime: "edge"
-}
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {

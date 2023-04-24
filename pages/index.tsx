@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { CreateIntentResponse } from "@candypay/checkout-sdk";
-import axios from "axios";
+import { candypay } from "../lib/index";
 import { PayElement } from "@candypay/elements";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
@@ -22,9 +22,18 @@ export default function Home() {
   const router = useRouter();
 
   const intentHandler = async (): Promise<CreateIntentResponse> => {
-    const res = await axios.post("/api/intent/");
-    console.log("intent data", res.data);
-    return res.data;
+    const response = await candypay.paymentIntent.create({
+      tokens: ["shdw", "bonk"],
+      items: [
+        {
+          name: "Nike Air Force",
+          image: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-shoes-WrLlWX.png",
+          price: 0.01,
+          quantity: 1,
+        },
+      ],
+    });
+    return response;
   };
 
   const theme = {
