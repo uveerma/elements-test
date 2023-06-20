@@ -5,8 +5,8 @@ dependencies:
     specifier: 0.1.55
     version: 0.1.55
   '@candypay/elements':
-    specifier: 0.0.17-alpha.0
-    version: 0.0.17-alpha.0(@babel/core@7.21.4)(@babel/runtime@7.20.13)(@types/react@18.0.28)(bs58@5.0.0)(react-dom@18.2.0)(react-native@0.71.7)(react@18.2.0)
+    specifier: 0.0.18
+    version: 0.0.18(@babel/core@7.21.4)(@babel/runtime@7.20.13)(@types/react@18.0.28)(bs58@5.0.0)(react-dom@18.2.0)(react-native@0.71.7)(react@18.2.0)
   '@chakra-ui/icons':
     specifier: ^2.0.17
     version: 2.0.17(@chakra-ui/system@2.4.0)(react@18.2.0)
@@ -1462,18 +1462,6 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@candypay/checkout-sdk@0.1.52-alpha.0:
-    resolution: {integrity: sha512-LZHO5atuHgxMeUHcWDbZ6qLmPFWBZhHiRG4pYIm2RWuwre2g4iV2+SeTtdZYPQ+5LKF1oaDDfpQu3qUZNkwnUw==}
-    dependencies:
-      '@types/node': 18.7.18
-      axios: 0.27.2
-      pako: 2.1.0
-      svix: 0.70.0
-    transitivePeerDependencies:
-      - debug
-      - encoding
-    dev: false
-
   /@candypay/checkout-sdk@0.1.55:
     resolution: {integrity: sha512-zhHeVzGuDoSdUZpaEUyJY7MDPA6qOWfRMHKPKPQd+5Axvn7gld5/DZ6dBYSKeeTOBLFxcLc4T2sL5GTRODfZBA==}
     dependencies:
@@ -1490,12 +1478,12 @@ packages:
     resolution: {integrity: sha512-Ytd3ZILL3fd1OCG+fURt4uyBflsE4V8GDtNuMaXtVpTJfeYpFbSHZVmQ7R26El2mo9BrlIcXgv9wdc4WaIBO1w==}
     dev: false
 
-  /@candypay/elements@0.0.17-alpha.0(@babel/core@7.21.4)(@babel/runtime@7.20.13)(@types/react@18.0.28)(bs58@5.0.0)(react-dom@18.2.0)(react-native@0.71.7)(react@18.2.0):
-    resolution: {integrity: sha512-9r6zTC53agwgLk9+b3jhNeDB+9hh0CncfVPsL1pZw7JHn2l7pcmNOqt+l5KQ1YvlN1bKv5DqZLDsu8Cj3wsY/w==}
+  /@candypay/elements@0.0.18(@babel/core@7.21.4)(@babel/runtime@7.20.13)(@types/react@18.0.28)(bs58@5.0.0)(react-dom@18.2.0)(react-native@0.71.7)(react@18.2.0):
+    resolution: {integrity: sha512-mp/n82z3uULPF+K2FH5JWh3FEDrQd4IWkOtPhG+PySSkfHqJ3vof797pXPY4SlSHMEpDyO+/yZsfJajfbwFrYw==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
-      '@candypay/checkout-sdk': 0.1.52-alpha.0
+      '@candypay/checkout-sdk': 0.1.55
       '@candypay/common': 0.0.10
       '@chakra-ui/react': 2.4.9(@emotion/react@11.10.5)(@emotion/styled@11.10.5)(@types/react@18.0.28)(framer-motion@9.0.2)(react-dom@18.2.0)(react@18.2.0)
       '@emotion/react': 11.10.5(@babel/core@7.21.4)(@types/react@18.0.28)(react@18.2.0)
@@ -6612,6 +6600,7 @@ packages:
 
   /eip1193-provider@1.0.1:
     resolution: {integrity: sha512-kSuqwQ26d7CzuS/t3yRXo2Su2cVH0QfvyKbr2H7Be7O5YDyIq4hQGCNTo5wRdP07bt+E2R/8nPCzey4ojBHf7g==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     dependencies:
       '@json-rpc-tools/provider': 1.7.6
     transitivePeerDependencies:

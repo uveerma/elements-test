@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider>
       <Toaster />
       <CheckoutProvider
-      publicApiKey={process.env[`NEXT_PUBLIC_CP_API`] as string}
+      network="mainnet"
     >
       <Component {...pageProps} />
     </CheckoutProvider>
